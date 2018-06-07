@@ -36,6 +36,10 @@ Then to shut it down:
 docker-compose down
 ```
 
+# Connecting to IPFS
+
+Once the service is running, you can connect to IPFS as you would normally.  The container exposes the ports 4001, 4002, 5001 and 8080.
+
 ## Troubleshooting
 
 If after running `docker-compose up` you see an error like `Error: api not running` you will need to delete
