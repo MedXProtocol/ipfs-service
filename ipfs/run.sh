@@ -28,8 +28,6 @@ echo "Using CORS origins: $IPFS_CONFIG_API_CORS_ORIGINS"
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin $IPFS_CONFIG_API_CORS_ORIGINS
 
-ipfs config show
-
 # if the first argument is daemon
 if [ "$1" = "daemon" ]; then
   # filter the first argument until
