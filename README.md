@@ -12,7 +12,7 @@ cp ipfs-service.env.example ipfs-service.env
 
 2. Update config to reflect your environment.  By default the config accepts all requests from http://localhost:3000
 
-# Running
+# Running Locally
 
 First [Docker](https://www.docker.com/) must be installed.
 
@@ -35,6 +35,44 @@ Then to shut it down:
 ```
 docker-compose down
 ```
+
+# Running remotely
+
+To launch a remote instance, make sure you have an AWS MedCredits IAM account with the 'developer' role.  Ensure your credentials have been added to your [~/.aws/credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) file.
+
+If you have placed the IAM user credentials under a named profile, then be sure to set it as the default for a terminal session:
+
+```
+export AWS_PROFILE=<the name of the profile>
+```
+
+First create a new EC2 Docker instance:
+
+```
+./scripts/docker-machine-create.sh
+```
+
+Now make the remote machine the 'active' Docker daemon:
+
+```
+eval $(docker-machine env ipfs-server)
+```
+
+Check that it's active:
+
+```
+docker-machine active
+```
+
+You should see the output `ipfs-server`
+
+Now deploy your Docker composition:
+
+```
+docker-compose up -d
+```
+
+IPFS will now be available at the IP address of the EC2 instance.
 
 # Connecting to IPFS
 

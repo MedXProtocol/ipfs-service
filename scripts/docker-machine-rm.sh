@@ -1,2 +1,2 @@
 #! /bin/sh
-docker-machine rm ipfs-nginx-server
+docker-machine rm ipfs-server
