@@ -1,8 +1,8 @@
 # IPFS Service
 
-This service containerizes IPFS.  We can configure IPFS to allow requests from certain hosts.
+This service containerizes IPFS using Docker.  We can configure IPFS to allow requests from certain hosts.
 
-# Setup
+# Local Setup
 
 1. Copy over config file
 
