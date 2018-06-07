@@ -2,7 +2,7 @@
 
 This service containerizes IPFS using Docker.  We can configure IPFS to allow requests from certain hosts.
 
-# Local Setup
+# Setup
 
 1. Copy over config file
 
@@ -10,7 +10,7 @@ This service containerizes IPFS using Docker.  We can configure IPFS to allow re
 cp ipfs-service.env.example ipfs-service.env
 ```
 
-2. Update config to reflect your environment.  By default the config accepts all requests from http://localhost:3000
+2. Update config to reflect your environment.  By default the config accepts all requests from http://localhost:3000.  If you are deploying remotely you'll want to ensure that only certain domains are allowed; i.e. `http://hippocrates.netlify.com`
 
 # Running Locally
 
