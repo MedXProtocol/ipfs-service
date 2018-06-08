@@ -1,2 +1,2 @@
 #! /bin/sh
-docker-machine rm ipfs-server
+docker-machine rm $1

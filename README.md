@@ -49,10 +49,10 @@ export AWS_PROFILE=<the name of the profile>
 First create a new EC2 Docker instance:
 
 ```
-./scripts/docker-machine-create.sh
+./scripts/docker-machine-create.sh ipfs-server
 ```
 
-Now make the remote machine the 'active' Docker daemon:
+The service is named ipfs-server in the above script.  Now make the remote machine the 'active' Docker daemon:
 
 ```
 eval $(docker-machine env ipfs-server)
@@ -65,6 +65,8 @@ docker-machine active
 ```
 
 You should see the output `ipfs-server`
+
+Here you should double-check your `ipfs-service.env` to make sure it allows the right hostnames.
 
 Now deploy your Docker composition:
 
