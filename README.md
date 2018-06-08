@@ -38,7 +38,7 @@ docker-compose down
 
 # Running remotely
 
-To launch a remote instance, make sure you have an AWS MedCredits IAM account with the 'developer' role.  Ensure your credentials have been added to your [~/.aws/credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) file.
+To launch a remote instance, make sure you have an AWS MedCredits IAM account with the 'developer' group.  Ensure your credentials have been added to your [~/.aws/credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) file.
 
 If you have placed the IAM user credentials under a named profile, then be sure to set it as the default for a terminal session:
 
