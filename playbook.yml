@@ -1,0 +1,77 @@
+# Creates a new EC2 instance for the IPFS server.
+# This config expects an Elastic IP to have been defined at 34.230.142.160
+---
+- name: Create an EC2 instance
+  hosts: local
+  become: False
+  tasks:
+    - name: Launch IPFS Instance
+      ec2:
+        id: ipfs-server-v4
+        key_name: ipfs-key-pair
+        image: ami-14c5486b
+        group_id: sg-055149c7d6b300d72
+        instance_type: t2.micro
+        region: us-east-1
+        state: present
+      register: ec2
+    - name: Associate Elastic IP
+      ec2_eip:
+        allow_reassociation: true
+        device_id: "{{ ec2.instance_ids[0] }}"
+        public_ip: 34.230.142.160
+        region: us-east-1
+
+- name: Setup the IPFS server for Docker
+  hosts: ipfs
+  become: yes
+  tasks:
+    - name: Update server
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Ensure pip is latest
+      pip:
+        name: docker-compose
+
+    - name: Install docker python module
+      pip:
+        name: docker-compose==1.21.2
+        state: latest
+
+    - name: Start Docker Service
+      service:
+        name: docker
+        state: started
+
+    - name: Add ec2-user to docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+- name: Compose the Docker containers
+  hosts: ipfs
+  tasks:
+    - name: Copy the Docker configuration to the server
+      synchronize:
+        src: docker
+        dest: /home/ec2-user/ipfs-service
+        recursive: True
+        delete: True
+
+    - name: Copy the ipfs service environment to the server
+      synchronize:
+        src: ipfs-service.env
+        dest: /home/ec2-user/ipfs-service/ipfs-service.env
+
+    - docker_service:
+        project_src: /home/ec2-user/ipfs-service/docker
+        build: yes
+        state: present

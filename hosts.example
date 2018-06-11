@@ -1,0 +1,5 @@
+[ipfs]
+34.230.142.160
+
+[local]
+localhost ansible_connection=local ansible_python_interpreter=/usr/local/opt/python/libexec/bin/python

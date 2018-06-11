@@ -1,0 +1,29 @@
+version: "3"
+services:
+  ipfs:
+    env_file:
+      - ../ipfs-service.env
+    build: './ipfs'
+    volumes:
+      - "~/.ipfs-service/export:/export"
+      - "~/.ipfs-service/data:/data/ipfs"
+    ports:
+      - "4001:4001"
+      - "4002:4002"
+      - "5001:5001"
+      - "8080:8080"
+  nginx:
+    build: './nginx'
+    volumes:
+      - /docker/var/www:/usr/share/nginx/html:ro
+      - /docker/certs/letsencrypt:/etc/letsencrypt:ro
+      - /docker/var/log/nginx:/var/log/nginx
+    ports:
+      - 80:80
+      - 443:443
+  certbot:
+    build: './certbot'
+    volumes:
+      - /docker/var/www/letsencrypt:/var/www/.well-known
+      - /docker/certs/letsencrypt:/etc/letsencrypt
+      - /docker/var/log/letsencrypt:/var/log/letsencrypt

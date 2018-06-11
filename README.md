@@ -2,6 +2,8 @@
 
 This service containerizes IPFS using Docker.  We can configure IPFS to allow requests from certain hosts.
 
+NOTE: This Ansible playbook is very racey when run the first time.  When you setup a new server you'll probably need to run it three times; once to instatiate EC2, the next to install packages and start the docker service, then finally to start the docker containers.
+
 # Setup
 
 1. Copy over config file
