@@ -8,22 +8,24 @@ services:
       - "~/.ipfs-service/export:/export"
       - "~/.ipfs-service/data:/data/ipfs"
     ports:
-      - "4001:4001"
-      - "4002:4002"
-      - "5001:5001"
-      - "8080:8080"
+      - 4001:4001
+      - 8080:8080
   nginx:
-    build: './nginx'
+    build: './nginx-custom'
     volumes:
-      - /docker/var/www:/usr/share/nginx/html:ro
       - /docker/certs/letsencrypt:/etc/letsencrypt:ro
       - /docker/var/log/nginx:/var/log/nginx
+      - /docker/var/www/letsencrypt:/var/www/letsencrypt
     ports:
       - 80:80
       - 443:443
-  certbot:
-    build: './certbot'
-    volumes:
-      - /docker/var/www/letsencrypt:/var/www/.well-known
-      - /docker/certs/letsencrypt:/etc/letsencrypt
-      - /docker/var/log/letsencrypt:/var/log/letsencrypt
+      - 5001:5001
+      - 5002:5002
+  # certbot:
+  #   build: './certbot'
+  #   volumes:
+  #     - /docker/var/www/letsencrypt:/var/www/.well-known
+  #     - /docker/certs/letsencrypt:/etc/letsencrypt
+  #     - /docker/var/log/letsencrypt:/var/log/letsencrypt
+
+      # - /docker/etc/nginx/conf.d:/etc/nginx/conf.d/container

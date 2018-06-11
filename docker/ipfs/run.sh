@@ -28,8 +28,8 @@ echo "Using CORS origins: $IPFS_CONFIG_API_CORS_ORIGINS"
 ################ EVERYTHING ABOVE ORIGINAL
 
 # Configure server_names origins here
-ipfs config --json 'API.HTTPHeaders.Access-Control-Allow-Methods' '["PUT", "GET", "POST"]'
-ipfs config --json 'API.HTTPHeaders.Access-Control-Allow-Origin' $IPFS_CONFIG_API_CORS_ORIGINS
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "$IPFS_CONFIG_API_CORS_ORIGINS"
 
 ################ EVERYTHING BELOW ORIGINAL
 
