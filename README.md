@@ -72,7 +72,7 @@ ipfs
 localhost ansible_connection=local
 ```
 
-### Creating or Updating Production
+### Updating Production
 
 Ansible requires the user to have SSH access to the remote machine that it manages.  Make sure you have an AWS MedCredits IAM account with the 'developer' group.  Ensure your credentials have been added to your [~/.aws/credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html) file:
 
@@ -100,9 +100,13 @@ IPFS_CONFIG_API_CORS_ORIGINS=["https://hippocrates.netlify.com", "https://app.me
 ```bash
 ansible-playbook setup-playbook.yml
 ```
-3. To update the docker configuration and launch / restart the containers run:
+3. To update the docker configuration and standard HTTP nginx config run:
 ```bash
 ansible-playbook update-playbook.yml
+```
+4. To update the HTTPS configuration run:
+```bash
+ansible-playbook update-https-playbook.yml
 ```
 
 # Connecting to IPFS
@@ -113,3 +117,8 @@ Once the service is running, you can connect to IPFS as you would normally.  The
 
 If after running `docker-compose up` you see an error like `Error: api not running` you will need to delete
 the 'api' file in the IPFS repo directory.  The docker-compose.yml places this at *~/.ipfs-service/data/api*
+
+# TODO
+
+- [ ] Add a CRON job to renew the certificate
+- [ ] Add to the README how to request the certificate initially
