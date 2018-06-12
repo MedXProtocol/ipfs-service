@@ -23,7 +23,7 @@
         region: us-east-1
 
 - name: Setup the IPFS server for Docker
-  hosts: ipfs
+  hosts: ipfs-server
   tasks:
     - name: Update server
       become: yes

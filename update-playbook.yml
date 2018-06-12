@@ -1,6 +1,6 @@
 ---
 - name: Compose the Docker containers
-  hosts: ipfs
+  hosts: ipfs-server
   tasks:
     - name: Copy the Docker configuration to the server
       synchronize:
