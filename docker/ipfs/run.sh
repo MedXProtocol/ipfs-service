@@ -22,14 +22,15 @@ else
   ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
 fi
 
-echo "Using CORS origins: $IPFS_CONFIG_API_CORS_ORIGINS"
-
-
 ################ EVERYTHING ABOVE ORIGINAL
+
+default_origins='["*"]'
+origins=${IPFS_CONFIG_API_CORS_ORIGINS:-$default_origins}
+echo "Using CORS origins: $origins"
 
 # Configure server_names origins here
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
-ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "$IPFS_CONFIG_API_CORS_ORIGINS"
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "$origins"
 
 ################ EVERYTHING BELOW ORIGINAL
 
