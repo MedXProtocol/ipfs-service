@@ -5,8 +5,8 @@ services:
       - ../ipfs-service.env
     build: './ipfs'
     volumes:
-      - "~/.ipfs-service/export:/export"
-      - "~/.ipfs-service/data:/data/ipfs"
+      - "/docker/var/ipfs/export:/export"
+      - "/docker/var/ipfs/data:/data/ipfs"
     ports:
       - 4001:4001
       - 8080:8080

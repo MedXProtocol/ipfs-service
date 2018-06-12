@@ -18,23 +18,20 @@ IPFS_CONFIG_API_CORS_ORIGINS=["http://localhost:3000"]
 
 [Docker](https://www.docker.com/) must be installed.
 
-1. `cd` into the docker directory:
+1. Start the localhost server
+```bash
+./up.sh
+```
+2. Stop the localhost server
+```bash
+./down.sh
+```
+
+Logs are available at **/docker/var/logs** or you can view the live container logs:
+
 ```bash
 cd docker
-```
-2. Start the docker containers:
-```bash
-docker-compose up -d
-```
-`-d` will start it in detached mode.  It's optional.  I find it easier to shut it down cleanly this way.
-
-3. View logs:
-```bash
 docker-compose logs -f
-```
-4. Shut it down:
-```bash
-docker-compose down
 ```
 
 # Running remotely
