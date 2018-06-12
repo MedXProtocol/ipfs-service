@@ -1,0 +1,42 @@
+---
+- name: Compose the Docker containers
+  hosts: ipfs
+  tasks:
+    - name: Copy the Docker configuration to the server
+      synchronize:
+        src: docker
+        dest: /home/ec2-user/ipfs-service
+        recursive: True
+        delete: True
+
+    - name: Copy the ipfs service environment to the server
+      synchronize:
+        src: ipfs-service.env
+        dest: /home/ec2-user/ipfs-service/ipfs-service.env
+
+    - docker_service:
+        project_src: /home/ec2-user/ipfs-service/docker
+        build: yes
+        state: present
+        restarted: True
+
+    - name: Copy the Certbot script
+      synchronize:
+        src: run-certbot.sh
+        dest: /home/ec2-user/ipfs-service/run-certbot.sh
+    #
+    # - name: Run the Certbot script
+    #   shell: /home/ec2-user/ipfs-service/run-certbot.sh
+
+    - name: Update the NGINX config
+      become: True
+      synchronize:
+        src: nginx.conf.d/proxy.conf
+        dest: /docker/etc/nginx/conf.d/proxy.conf
+
+    - name: Restart the Docker containers
+      docker_service:
+        project_src: /home/ec2-user/ipfs-service/docker
+        build: yes
+        state: present
+        restarted: True

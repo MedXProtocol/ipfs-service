@@ -16,16 +16,9 @@ services:
       - /docker/certs/letsencrypt:/etc/letsencrypt:ro
       - /docker/var/log/nginx:/var/log/nginx
       - /docker/var/www/letsencrypt:/var/www/letsencrypt
+      - /docker/etc/nginx/conf.d:/etc/nginx/conf.d/ipfs-service
     ports:
       - 80:80
       - 443:443
       - 5001:5001
       - 5002:5002
-  # certbot:
-  #   build: './certbot'
-  #   volumes:
-  #     - /docker/var/www/letsencrypt:/var/www/.well-known
-  #     - /docker/certs/letsencrypt:/etc/letsencrypt
-  #     - /docker/var/log/letsencrypt:/var/log/letsencrypt
-
-      # - /docker/etc/nginx/conf.d:/etc/nginx/conf.d/container
