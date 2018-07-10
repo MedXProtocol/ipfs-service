@@ -10,6 +10,10 @@ services:
     ports:
       - 4001:4001
       - 8080:8080
+  webrtcstar:
+    build: './p2p-webrtc-star'
+    ports:
+      - 9090:9090
   nginx:
     build: './nginx-custom'
     volumes:

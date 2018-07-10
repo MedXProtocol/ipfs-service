@@ -1,14 +1,11 @@
 ---
-- name: Request new SSL certificate and update Nginx
+- name: Upload new NGINX config
   hosts: ipfs-server
   tasks:
-    # - name: Run the Certbot script
-    #   shell: /home/ec2-user/ipfs-service/run-certbot.sh
-
     - name: Update the NGINX config
       become: True
       synchronize:
-        src: nginx.conf.d/https-proxy.conf
+        src: nginx.conf.d/production-proxy.conf
         dest: /docker/etc/nginx/conf.d/proxy.conf
 
     - name: Restart the Docker containers

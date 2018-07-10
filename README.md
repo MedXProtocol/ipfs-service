@@ -98,16 +98,21 @@ IPFS_CONFIG_API_CORS_ORIGINS=["https://hippocrates.netlify.com", "https://app.me
 ```
 2. If the server has been setup previously, skip to step 3.  Otherwise setup a new server:
 ```bash
-ansible-playbook setup-playbook.yml
+ansible-playbook create-server-playbook.yml
 ```
 3. To update the docker configuration and standard HTTP nginx config run:
 ```bash
-ansible-playbook update-playbook.yml
+ansible-playbook update-docker-playbook.yml
 ```
 4. To update the HTTPS configuration run:
 ```bash
-ansible-playbook update-https-playbook.yml
+ansible-playbook update-nginx-playbook.yml
 ```
+5. To renew the Certbot SSL certificate: **incomplete**
+```bash
+ansible-playbook update-certbot-playbook.yml
+```
+
 
 # Connecting to IPFS
 

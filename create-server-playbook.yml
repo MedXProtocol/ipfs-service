@@ -22,7 +22,7 @@
         public_ip: 34.230.142.160
         region: us-east-1
 
-- name: Setup the IPFS server for Docker
+- name: Setup the server for Docker
   hosts: ipfs-server
   tasks:
     - name: Update server
