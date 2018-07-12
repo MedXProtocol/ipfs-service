@@ -12,8 +12,6 @@ services:
       - 8080:8080
   webrtcstar:
     build: './p2p-webrtc-star'
-    ports:
-      - 9090:9090
   nginx:
     build: './nginx-custom'
     volumes:
@@ -25,3 +23,4 @@ services:
       - 80:80
       - 443:443
       - 5001:5001
+      - 9090:9090
