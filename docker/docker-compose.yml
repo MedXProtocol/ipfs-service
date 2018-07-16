@@ -1,9 +1,10 @@
 version: "3"
 services:
   ipfs:
+    build: './ipfs'
+    restart: on-failure
     env_file:
       - ../ipfs-service.env
-    build: './ipfs'
     volumes:
       - "/docker/var/ipfs/export:/export"
       - "/docker/var/ipfs/data:/data/ipfs"
@@ -12,8 +13,10 @@ services:
       - 8080:8080
   webrtcstar:
     build: './p2p-webrtc-star'
+    restart: on-failure
   nginx:
     build: './nginx-custom'
+    restart: on-failure
     volumes:
       - /docker/certs/letsencrypt:/etc/letsencrypt:ro
       - /docker/var/log/nginx:/var/log/nginx
