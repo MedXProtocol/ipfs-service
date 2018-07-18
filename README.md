@@ -87,6 +87,8 @@ aws_secret_access_key = ...
 
 Once your credentials have been added, export them into your terminal session.  To easily export any AWS profile to your terminal have a look at this [bash function](https://gist.github.com/asselstine/631eebb5bc2a8b59328e506a1f51f57a).  Otherwise you can simply `export AWS_ACCES...` with cut-and-paste.
 
+Also, make sure your IP address is added in the AWS console to the Networking configuration of the EC2 instance's security profile.
+
 The Ansible playbook will update the configuration for the existing server, or create a new one if it doesn't exist.  The playbook expects an Elastic IP to exist with the ip **34.230.142.160**.
 
 NOTE: This Ansible playbook needs to run a couple of times.  Once to wait for the server to start, another to wait for the docker service.  You'll likely have to run it a couple of times if you're starting from scratch.
@@ -94,7 +96,7 @@ NOTE: This Ansible playbook needs to run a couple of times.  Once to wait for th
 1. Ensure the **ipfs-service.env** file has been configured for a production deploy:
 ```bash
 # ipfs-service.env
-IPFS_CONFIG_API_CORS_ORIGINS=["https://hippocrates.netlify.com", "https://app.medcredits.io"]
+IPFS_CONFIG_API_CORS_ORIGINS=["https://hippocrates.netlify.com", "https://hippocrates.medcredits.io"]
 ```
 2. If the server has been setup previously, skip to step 3.  Otherwise setup a new server:
 ```bash

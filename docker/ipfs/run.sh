@@ -11,6 +11,11 @@ if [ `id -u` -eq 0 ]; then
   exec su-exec "$user" "$0" "$@"
 fi
 
+# Delete the existing api file if it exists
+# (it's only a protocol and ip address that is recreated when the
+# daemon boots up, not anything important)
+rm -f /data/ipfs/api
+
 # 2nd invocation with regular user
 ipfs version
 
@@ -51,5 +56,6 @@ else
   echo "DEPRECATED: * https://github.com/ipfs/go-ipfs/pull/3573" >&2
   echo "DEPRECATED: * https://github.com/ipfs/go-ipfs/pull/3685" >&2
 fi
+
 
 exec ipfs daemon "$@"
