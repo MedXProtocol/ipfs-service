@@ -2,7 +2,7 @@ version: "3"
 services:
   ipfs:
     build: './ipfs'
-    restart: on-failure
+    restart: always
     env_file:
       - ../ipfs-service.env
     volumes:
@@ -13,13 +13,13 @@ services:
       - 8080:8080
   # webrtcstar:
   #   build: './p2p-webrtc-star'
-  #   restart: on-failure
+  #   restart: always
   # websocketstar:
   #   build: './p2p-websocket-star'
-  #   restart: on-failure
+  #   restart: always
   nginx:
     build: './nginx-custom'
-    restart: on-failure
+    restart: always
     volumes:
       - /docker/certs/letsencrypt:/etc/letsencrypt:ro
       - /docker/var/log/nginx:/var/log/nginx
@@ -29,5 +29,5 @@ services:
       - 80:80
       - 443:443
       - 5001:5001
-      - 9090:9090
-      - 9091:9091
+      # - 9090:9090
+      # - 9091:9091
