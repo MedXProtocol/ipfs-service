@@ -11,12 +11,12 @@ services:
     ports:
       - 4001:4001
       - 8080:8080
-  webrtcstar:
-    build: './p2p-webrtc-star'
-    restart: on-failure
-  websocketstar:
-    build: './p2p-websocket-star'
-    restart: on-failure
+  # webrtcstar:
+  #   build: './p2p-webrtc-star'
+  #   restart: on-failure
+  # websocketstar:
+  #   build: './p2p-websocket-star'
+  #   restart: on-failure
   nginx:
     build: './nginx-custom'
     restart: on-failure
