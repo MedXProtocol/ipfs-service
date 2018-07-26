@@ -41,9 +41,15 @@ echo "Setting Gateway CORS origins: $origins"
 
 ipfs config --json Gateway.HTTPHeaders.Access-Control-Allow-Origin "$origins"
 
-echo "Setting Bootstrap to empty (no swarm peers, isolation mode)"
 
+echo "Force no swarm peers / isolation mode:"
 ipfs config --json Bootstrap "[]"
+ipfs config --json Discovery.MDNS.Enabled "false"
+ipfs config Routing.Type "none"
+ipfs config --json Swarm.DisableNatPortMap "true"
+ipfs config --json Swarm.DisableRelay "true"
+ipfs config Swarm.ConnMgr.Type "none"
+
 
 storage_size=${IPFS_MAX_STORAGE_SIZE=75GB}
 echo "Upping Max Storage Size to $storage_size"
