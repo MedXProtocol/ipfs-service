@@ -31,11 +31,25 @@ fi
 
 default_origins='["*"]'
 origins=${IPFS_CONFIG_API_CORS_ORIGINS:-$default_origins}
-echo "Using CORS origins: $origins"
+echo "Setting API CORS origins: $origins"
 
-# Configure server_names origins here
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "$origins"
+
+origins=${IPFS_CONFIG_GATEWAY_CORS_ORIGINS:-$default_origins}
+echo "Setting Gateway CORS origins: $origins"
+
+ipfs config --json Gateway.HTTPHeaders.Access-Control-Allow-Origin "$origins"
+
+echo "Setting Bootstrap to empty (no swarm peers, isolation mode)"
+
+ipfs config --json Bootstrap "[]"
+
+storage_size=${IPFS_MAX_STORAGE_SIZE=75GB}
+echo "Upping Max Storage Size to $storage_size"
+
+ipfs config Datastore.StorageMax "$storage_size"
+
 
 ################ EVERYTHING BELOW ORIGINAL
 
