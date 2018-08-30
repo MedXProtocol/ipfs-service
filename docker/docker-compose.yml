@@ -11,12 +11,12 @@ services:
     ports:
       - 4001:4001
       - 8080:8080
-  # webrtcstar:
-  #   build: './p2p-webrtc-star'
-  #   restart: always
-  # websocketstar:
-  #   build: './p2p-websocket-star'
-  #   restart: always
+  webrtcstar:
+    build: './p2p-webrtc-star'
+    restart: always
+  websocketstar:
+    build: './p2p-websocket-star'
+    restart: always
   nginx:
     build: './nginx-custom'
     restart: always
@@ -29,5 +29,5 @@ services:
       - 80:80
       - 443:443
       - 5001:5001
-      # - 9090:9090
-      # - 9091:9091
+      - 9090:9090
+      - 9091:9091
