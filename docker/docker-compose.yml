@@ -1,5 +1,20 @@
 version: "3"
 services:
+  whisper_mainnet:
+    build: './whisper'
+    restart: always
+    volumes:
+      - "/docker/var/whisper_mainnet:/root/.ethereum"
+  whisper_rinkeby:
+    build: './whisper'
+    restart: always
+    volumes:
+      - "/docker/var/whisper_rinkeby:/root/.ethereum"
+  whisper_ropsten:
+    build: './whisper'
+    restart: always
+    volumes:
+      - "/docker/var/whisper_ropsten:/root/.ethereum"
   ipfs:
     build: './ipfs'
     restart: always
@@ -25,3 +40,6 @@ services:
       - 5001:5001
       - 9090:9090
       - 9091:9091
+      - 9546:9546
+      - 10546:10546
+      - 11546:11546
