@@ -8,5 +8,6 @@ CMD [\
   "--ws", \
   "--wsapi", "eth,net,shh,web3", \
   "--wsorigins", "*", \
-  "--wsaddr", "0.0.0.0" \
+  "--wsaddr", "0.0.0.0", \
+  "--verbosity", "4" \
   ]
