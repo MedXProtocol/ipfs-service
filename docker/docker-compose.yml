@@ -5,22 +5,16 @@ services:
     restart: always
     volumes:
       - "/docker/var/whisper_mainnet:/root/.ethereum"
-    # ports:
-    #   - 9546:8546
   whisper_rinkeby:
     build: './whisper'
     restart: always
     volumes:
       - "/docker/var/whisper_rinkeby:/root/.ethereum"
-    # ports:
-    #   - 10546:8546
   whisper_ropsten:
     build: './whisper'
     restart: always
     volumes:
       - "/docker/var/whisper_ropsten:/root/.ethereum"
-    # ports:
-    #   - 11546:8546
   ipfs:
     build: './ipfs'
     restart: always
