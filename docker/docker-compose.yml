@@ -41,10 +41,10 @@ services:
       - LOGFILE=/var/log/letsencrypt/certrenewal.log
       - DEBUG=false
       - STAGING=false
-      - DOMAINS=ipfs.medxprotocol.delta.camp
+      - DOMAINS=ipfs.medx.delta.camp
       - EMAIL=brendan@delta.camp
       - CONCAT=false
-      - HEALTH_CHECK_URL=ipfs.medxprotocol.delta.camp
+      - HEALTH_CHECK_URL=ipfs.medx.delta.camp
   nginx:
     build: './nginx-custom'
     restart: always
