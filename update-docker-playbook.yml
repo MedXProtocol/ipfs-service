@@ -14,6 +14,12 @@
         src: ipfs-service.env
         dest: /home/ec2-user/ipfs-service/ipfs-service.env
 
+    - name: Update the NGINX config
+      become: True
+      synchronize:
+        src: nginx.conf.d/production-proxy.conf
+        dest: /docker/etc/nginx/conf.d/proxy.conf
+
     - docker_service:
         project_src: /home/ec2-user/ipfs-service/docker
         build: yes

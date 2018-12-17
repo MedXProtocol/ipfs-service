@@ -49,7 +49,7 @@ services:
     build: './nginx-custom'
     restart: always
     volumes:
-      - /docker/certs/letsencrypt:/etc/letsencrypt:ro
+      - /docker/etc/letsencrypt:/etc/letsencrypt:ro
       - /docker/var/log/nginx:/var/log/nginx
       - /docker/var/www:/var/www
       - /docker/etc/nginx/conf.d:/etc/nginx/conf.d/ipfs-service
