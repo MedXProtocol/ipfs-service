@@ -42,7 +42,7 @@ services:
       - DOMAINS=ipfs.medxprotocol.delta.camp
       - EMAIL=brendan@delta.camp
       - CONCAT=false
-      - HEALTH_CHECK_URL=ipfs.medxprotocol.delta.camp:5001
+      - HEALTH_CHECK_URL=ipfs.medxprotocol.delta.camp
   nginx:
     build: './nginx-custom'
     restart: always
