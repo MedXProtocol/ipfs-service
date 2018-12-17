@@ -35,7 +35,9 @@ services:
       - /docker/certs/letsencrypt:/certs
       - /docker/etc/letsencrypt:/etc/letsencrypt
       - /docker/var/log/letsencrypt:/var/log/letsencrypt
+      - /docker/var/www:/var/www
     environment:
+      - WEBROOT=/var/www
       - LOGFILE=/var/log/letsencrypt/certrenewal.log
       - DEBUG=false
       - STAGING=false
@@ -49,7 +51,7 @@ services:
     volumes:
       - /docker/certs/letsencrypt:/etc/letsencrypt:ro
       - /docker/var/log/nginx:/var/log/nginx
-      - /docker/var/www/letsencrypt:/var/www/letsencrypt
+      - /docker/var/www:/var/www
       - /docker/etc/nginx/conf.d:/etc/nginx/conf.d/ipfs-service
     ports:
       - 80:80
