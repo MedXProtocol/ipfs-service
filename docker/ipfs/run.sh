@@ -30,13 +30,13 @@ fi
 ################ EVERYTHING ABOVE ORIGINAL
 
 default_origins='["*"]'
-origins=${IPFS_CONFIG_API_CORS_ORIGINS:-$default_origins}
+origins=${IPFS_CONFIG_CORS_ORIGINS:-$default_origins}
 echo "Setting API CORS origins: $origins"
 
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
 ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "$origins"
 
-origins=${IPFS_CONFIG_GATEWAY_CORS_ORIGINS:-$default_origins}
+origins=${IPFS_CONFIG_CORS_ORIGINS:-$default_origins}
 echo "Setting Gateway CORS origins: $origins"
 
 ipfs config --json Gateway.HTTPHeaders.Access-Control-Allow-Origin "$origins"

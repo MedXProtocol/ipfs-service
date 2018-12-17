@@ -26,6 +26,23 @@ services:
     ports:
       - 4001:4001
       - 8080:8080
+  letsencrypt_autorenew:
+    build: './letsencrypt-autorenew'
+    restart: always
+    ports:
+      - 443:443
+    volumes:
+      - /docker/certs/letsencrypt:/certs
+      - /docker/etc/letsencrypt:/etc/letsencrypt
+      - /docker/var/log/letsencrypt:/var/log/letsencrypt
+    environment:
+      - LOGFILE=/var/log/letsencrypt/certrenewal.log
+      - DEBUG=false
+      - STAGING=false
+      - DOMAINS=ipfs.medxprotocol.delta.camp
+      - EMAIL=brendan@delta.camp
+      - CONCAT=false
+      - HEALTH_CHECK_URL=ipfs.medxprotocol.delta.camp:5001
   nginx:
     build: './nginx-custom'
     restart: always
@@ -36,7 +53,6 @@ services:
       - /docker/etc/nginx/conf.d:/etc/nginx/conf.d/ipfs-service
     ports:
       - 80:80
-      - 443:443
       - 5001:5001
       - 9090:9090
       - 9091:9091
