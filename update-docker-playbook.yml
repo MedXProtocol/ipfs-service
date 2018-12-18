@@ -14,6 +14,11 @@
         src: ipfs-service.env
         dest: /home/ec2-user/ipfs-service/ipfs-service.env
 
+    - name: Copy the ssl service env to server
+      synchronize:
+        src: ssl-renew.env
+        dest: /home/ec2-user/ipfs-service/ssl-renew.env
+
     - name: Update the NGINX config
       become: True
       synchronize:
