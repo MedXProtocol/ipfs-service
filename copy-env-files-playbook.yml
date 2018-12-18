@@ -1,0 +1,13 @@
+---
+- name: Copy out environment files
+  hosts: ipfs-server
+  tasks:
+    - name: Copy the ipfs service environment to the server
+      synchronize:
+        src: ipfs-service.env
+        dest: /home/ec2-user/ipfs-service/ipfs-service.env
+
+    - name: Copy the ssl service env to server
+      synchronize:
+        src: ssl-renew.env
+        dest: /home/ec2-user/ipfs-service/ssl-renew.env
