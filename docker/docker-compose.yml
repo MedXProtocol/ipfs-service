@@ -36,15 +36,8 @@ services:
       - /docker/etc/letsencrypt:/etc/letsencrypt
       - /docker/var/log/letsencrypt:/var/log/letsencrypt
       - /docker/var/www:/var/www
-    environment:
-      - WEBROOT=/var/www
-      - LOGFILE=/var/log/letsencrypt/certrenewal.log
-      - DEBUG=false
-      - STAGING=false
-      - DOMAINS=ipfs.medx.delta.camp
-      - EMAIL=brendan@delta.camp
-      - CONCAT=false
-      - HEALTH_CHECK_URL=ipfs.medx.delta.camp
+    env_file:
+      - ../ssl-renew.env
   nginx:
     build: './nginx-custom'
     restart: always
